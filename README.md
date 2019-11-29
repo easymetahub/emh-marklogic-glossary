@@ -159,3 +159,8 @@ as object-node()*
 ## xqDoc
 
 ## OpenAPI
+
+## Training Available
+
+[EasyMetaHub](http://easymetahub.com) is available for training in proper
+XQuery documentation and OpenAPI generation.
