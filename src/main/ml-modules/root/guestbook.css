@@ -1,0 +1,32 @@
+html, body {
+  background-color: #f0f0f0;
+}
+
+#name, #message {
+  width: 250px;
+}
+#message {
+  height: 100px;
+}
+#submit {
+  width: 100%;
+}
+
+.entry {
+  border: 1px solid #cccccc;
+  width: 400px;
+}
+
+.timestamp {
+  float: right;
+}
+
+.name {
+  font-weight: bold;
+  float: left;
+}
+
+.message {
+  margin-top: 10px;
+  clear: both;
+}

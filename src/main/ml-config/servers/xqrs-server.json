@@ -1,0 +1,11 @@
+{
+  "server-name": "%%NAME%%-xqrs",
+  "server-type": "http",
+  "root": "/",
+  "group-name": "%%GROUP%%",
+  "port": %%mlXqrsPort%%,
+  "modules-database": "%%MODULES_DATABASE%%",
+  "content-database": "%%DATABASE%%",
+  "authentication": "digest",
+  "url-rewriter": "/xqrs/xqrs.xqy"
+}

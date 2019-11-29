@@ -1,0 +1,151 @@
+import org.apache.tools.ant.filters.BaseFilterReader
+import org.apache.tools.ant.taskdefs.condition.Os
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.xqdoc:xqdoc:1.9.9.2"
+        classpath "com.marklogic:marklogic-unit-test-client:0.12.0"
+    }
+}
+
+plugins {
+  id "net.saliman.properties" version "1.5.1"
+  id "com.marklogic.ml-gradle" version "3.16.3"
+  id "com.xmllondon.xqrs-gradle-plugin" version "1.0.2"
+}
+
+repositories {
+  jcenter()
+  maven { url "http://developer.marklogic.com/maven2/" }
+  maven { url "http://repository.cloudera.com/artifactory/cloudera-repos/" }
+}
+
+configurations {
+  mlcp {
+    resolutionStrategy {
+      force "xml-apis:xml-apis:1.4.01"
+    }
+  }
+}
+
+dependencies {
+    mlcp "com.marklogic:mlcp:9.0.6"
+    mlRestApi "com.marklogic:marklogic-unit-test-modules:0.12.0"
+    mlcp files("marklogic/lib")
+}
+
+class XQDocFilter extends BaseFilterReader {
+    XQDocFilter(Reader input) {
+        super(new StringReader(new org.xqdoc.MarkLogicProcessor().process(input.text)))
+    }
+}
+
+task generateXQDocs(type: Copy) {
+  into 'xqDoc'
+  from 'src/main/ml-modules'
+  include '**/*.xqy'
+  rename { it - '.xqy' + '.xml' } 
+  includeEmptyDirs = false
+  eachFile { println it }
+  filter XQDocFilter
+}
+
+/**
+ * Seed original Glossary Manager sample data
+ */
+ task loadXQDocs(type: com.marklogic.gradle.task.MlcpTask) {
+  classpath = configurations.mlcp
+  command = "IMPORT"
+  database = "emh-glossary-content"
+  input_file_path = "xqDoc"
+  output_collections = "xqdoc"
+  output_uri_replace = ".*xqDoc,'/xqDoc'"
+  output_permissions = "emh-glossary-reader,read,emh-glossary-writer,update"  
+  document_type = "mixed"
+}
+
+def xqDocTree = fileTree(dir:'xqDoc', excludes:['openapi.json'])
+task fsTeardownXQDocs(type: Delete) {
+  delete xqDocTree
+}
+
+task dbTeardownXQDocs(type: com.marklogic.gradle.task.datamovement.DeleteCollectionsTask) {
+  collections = ['xqdoc']
+}
+
+
+/**
+ * Polymer 
+ */
+
+task npmInstallRoot(type: Exec) {
+    String npm = 'npm';
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        npm = 'npm.cmd'
+    }
+    workingDir 'src/main/polymer/root'
+    commandLine npm, 'install'
+}
+
+task polymerBuildRoot(type: Exec) {
+    String polymer = 'polymer';
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        polymer = 'polymer.cmd'
+    }
+    workingDir 'src/main/polymer/root'
+    commandLine polymer, 'build'
+}
+
+
+task copyPolymerRoot(type: Copy) {
+  into 'src/main/ml-modules/root'
+  from 'src/main/polymer/root/build/default'
+}
+
+/**
+ * Polymer 
+ */
+
+task npmInstallXQDoc(type: Exec) {
+    String npm = 'npm';
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        npm = 'npm.cmd'
+    }
+    workingDir 'src/main/polymer/xqDoc'
+    commandLine npm, 'install'
+}
+
+task polymerBuildXQDoc(type: Exec) {
+    String polymer = 'polymer';
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        polymer = 'polymer.cmd'
+    }
+    workingDir 'src/main/polymer/xqDoc'
+    commandLine polymer, 'build'
+}
+
+
+task copyPolymerXQDoc(type: Copy) {
+  into 'src/main/ml-modules/root/xqDoc'
+  from 'src/main/polymer/xqDoc/build/default'
+}
+
+/*
+generateXQDocs.mustRunAfter(fsTeardownXQDocs)
+loadXQDocs.mustRunAfter(dbTeardownXQDocs)
+mlDeploy.dependsOn copyPolymerRoot
+copyPolymerRoot.dependsOn polymerBuildRoot
+polymerBuildRoot.dependsOn npmInstallRoot
+mlDeploy.dependsOn copyPolymerXQDoc
+copyPolymerXQDoc.dependsOn polymerBuildXQDoc
+polymerBuildXQDoc.dependsOn npmInstallXQDoc
+*/
+
+mlPostDeploy.dependsOn fsTeardownXQDocs
+mlPostDeploy.dependsOn dbTeardownXQDocs
+mlPostDeploy.dependsOn generateXQDocs
+mlPostDeploy.dependsOn loadXQDocs

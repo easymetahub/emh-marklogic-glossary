@@ -1,0 +1,7 @@
+{
+  "name": "xqdoc",
+  "short_name": "xqdoc",
+  "description": "xqDoc display application",
+  "start_url": "/",
+  "display": "standalone"
+}

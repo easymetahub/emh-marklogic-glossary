@@ -1,0 +1,33 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "EasyMetaHub Glossary Project with xqDoc and OpenAPI",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8008"
+    }
+  ],
+  "paths": {
+  },
+  "components": {
+    "schemas": {},
+    "responses": {
+    },
+    "parameters": {
+    },
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {
+      "basicAuth": {
+        "description": "Each request must contain the headers necessary for basic authentication.  Use emh-glossary-reader/emh-glossary-reader",
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "links": {},
+    "callbacks": {}
+  }
+}

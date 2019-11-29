@@ -1,0 +1,115 @@
+{
+    "database-name": "%%DATABASE%%",
+    "range-element-index": [
+        {
+            "scalar-type": "string",
+            "namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "localname": "prefLabel",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "localname": "altLabel",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "localname": "entity",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "localname": "property-of",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "localname": "related",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "namespace-uri": "http://marklogic.com/data-hub/envelope",
+            "localname": "glossaryName",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        }
+    ],
+    "range-element-attribute-index": [
+        {
+            "scalar-type": "string",
+            "parent-namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "parent-localname": "Concept",
+            "namespace-uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "localname": "about",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "parent-namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "parent-localname": "hasTopConcept",
+            "namespace-uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "localname": "resource",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "parent-namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "parent-localname": "inScheme",
+            "namespace-uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "localname": "resource",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "parent-namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "parent-localname": "broader",
+            "namespace-uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "localname": "resource",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "parent-namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "parent-localname": "related",
+            "namespace-uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "localname": "resource",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        },
+        {
+            "scalar-type": "string",
+            "parent-namespace-uri": "http://www.w3.org/2008/05/skos#",
+            "parent-localname": "narrower",
+            "namespace-uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "localname": "resource",
+            "collation": "http://marklogic.com/collation/",
+            "range-value-positions": false,
+            "invalid-values": "reject"
+        }
+    ]
+}

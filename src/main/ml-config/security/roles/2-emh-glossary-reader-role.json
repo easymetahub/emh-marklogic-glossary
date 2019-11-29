@@ -1,0 +1,10 @@
+{
+  "role-name" : "emh-glossary-reader",
+  "description" : "Can view documents, but not edit",
+  "role" : [ "rest-reader", "emh-glossary-nobody" ],
+  "privilege" : [ {
+    "privilege-name" : "xdmp:invoke",
+    "action" : "http://marklogic.com/xdmp/privileges/xdmp-invoke",
+    "kind" : "execute"
+  } ]
+}
