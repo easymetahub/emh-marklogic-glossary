@@ -79,7 +79,9 @@ class ResultItem extends GestureEventListeners(PolymerElement) {
           </div>
           <div>Glossary: [[item.glossary]]</div>
           <template id="repeat0" is="dom-repeat" items="[[item.snippets]]">
-            <search-snippet-highlight snippet="[[item]]"></search-snippet-highlight>
+            <template id="repeat0" is="dom-repeat" items="[[item.matches]]">
+              <search-snippet-highlight snippet="[[item.text]]"></search-snippet-highlight>
+            </template>
           </template>
           <template is="dom-if" if="[[item.grid]]">
             <vaadin-grid theme="compact row-stripes" items="[[item.grid.rows]]"  height-by-rows>

@@ -151,6 +151,7 @@ declare function custom:result-object($result as node(), $show-snippets as xs:bo
     return
         object-node {
             'index' : $result/@index/number(),
+            'glossary': $envelope//env:headers/env:glossaryName/text(),
             'concept' : object-node {
                             'term' : emhjson:concept-value($concept/skos:prefLabel),
                             'about' : emhjson:concept-value($concept/@rdf:about),
