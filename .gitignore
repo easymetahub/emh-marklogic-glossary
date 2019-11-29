@@ -1,1 +1,12 @@
 .DS_Store
+/src/main/polymer/xqDoc/build
+/src/main/polymer/xqDoc/node_modules
+/.gradle
+/build
+/src/main/ml-modules/root/index.html
+/src/main/ml-modules/root/src
+/src/main/ml-modules/root/xqDoc
+/src/main/ml-modules/root/node_modules
+/xqDoc/root
+/src/main/polymer/root/node_modules
+/src/main/polymer/root/build

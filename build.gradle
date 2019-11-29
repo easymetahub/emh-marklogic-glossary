@@ -134,7 +134,6 @@ task copyPolymerXQDoc(type: Copy) {
   from 'src/main/polymer/xqDoc/build/default'
 }
 
-/*
 generateXQDocs.mustRunAfter(fsTeardownXQDocs)
 loadXQDocs.mustRunAfter(dbTeardownXQDocs)
 mlDeploy.dependsOn copyPolymerRoot
@@ -143,7 +142,6 @@ polymerBuildRoot.dependsOn npmInstallRoot
 mlDeploy.dependsOn copyPolymerXQDoc
 copyPolymerXQDoc.dependsOn polymerBuildXQDoc
 polymerBuildXQDoc.dependsOn npmInstallXQDoc
-*/
 
 mlPostDeploy.dependsOn fsTeardownXQDocs
 mlPostDeploy.dependsOn dbTeardownXQDocs
