@@ -22,7 +22,7 @@
 xquery version "1.0-ml";
  
 (: Import RESTXQ Modules - start :)
-(: Last Sync - Fri Nov 29 14:17:52 EST 2019 :)
+(: Last Sync - Fri Nov 29 14:50:07 EST 2019 :)
 import module namespace xq = "http://xqdoc.org/xqrs/resource/xqdoc" 
   at "/xqdoc-lib.xqy";
 import module namespace xqrs2openapi = "http://xqdoc.org/library/xqrs/xqdoc/openapi" 

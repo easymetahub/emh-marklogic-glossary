@@ -98,6 +98,10 @@ class EMHAcceleratorApp extends PolymerElement {
         body="[[loginData]]"
         handle-as="json"
         on-response="_onLoginResponse"></iron-ajax>
+      <iron-ajax id="logoutAction" 
+        url="/session/logout"  
+        handle-as="json"
+        on-response="_onLogoutResponse"></iron-ajax>
       <paper-dialog class="wide" id="dialog">
         <h2>Upload RDF(s)</h2>
         <paper-dialog-scrollable>
@@ -125,6 +129,15 @@ class EMHAcceleratorApp extends PolymerElement {
           <paper-button on-click="_attemptUserLogin">Login</paper-button>
         </div>
       </paper-dialog>
+      <paper-dialog id="userdata">
+        <h2>Roles</h2>
+        <vaadin-grid  theme="compact wrap-cell-content column-borders row-stripes" items="[[user.role]]"  height-by-rows>
+          <vaadin-grid-column>
+            <template class="header">ID</template>
+            <template>[[item]]</template>
+          </vaadin-grid-column>
+        </vaadin-grid>
+      </paper-dialog>
       <paper-dialog id="thespinner" modal>
         <paper-spinner active></paper-spinner>
       </paper-dialog>
@@ -148,9 +161,12 @@ class EMHAcceleratorApp extends PolymerElement {
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <a class="emhLink" href="http://easymetahub.com"><img src="/images/icon-72x72.png" height="50%"/></a>
-            <div main-title>Accelerator</div>
+            <div main-title>Glossary</div>
             <paper-slider title="Page size" pin snaps min="10" max="100" step="10" value="{{params.pagelength}}"></paper-slider>
             <paper-button on-click="_openLoginDialog">[[user.user]]</paper-icon-button>
+            <template is="dom-if" if="[[_isLoggedIn(user.user)]]">
+              <paper-icon-button on-click="_attemptUserLogout" icon="close" raised></paper-icon-button>
+            </template>
           </app-toolbar>
           </app-header>
           <paper-card>
@@ -307,7 +323,11 @@ class EMHAcceleratorApp extends PolymerElement {
 
 
     _openLoginDialog() {
-      this.$.login.open();
+      if (this.user.user == 'emh-glossary-reader') {
+        this.$.login.open();
+      } else {
+        this.$.userdata.open();
+      }
     }
 
     _attemptUserLogin() {
@@ -319,6 +339,18 @@ class EMHAcceleratorApp extends PolymerElement {
       this.$.whoAmI.generateRequest();
       this._runSearch();
       this.$.login.close();
+    }
+
+    _attemptUserLogout() {
+      this.$.logoutAction.generateRequest();
+    }
+
+    _onLogoutResponse(e) {
+      this.$.whoAmI.generateRequest();
+    }
+
+    _isLoggedIn(a) {
+      return (a != 'emh-glossary-reader');
     }
 
 
