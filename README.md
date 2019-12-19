@@ -187,7 +187,11 @@ as object-node()*
 
 ## xqDoc
 
+![images/xqdoc-01.png](images/xqdoc-01.png)
+
 ## OpenAPI
+
+![images/openapi-01.png](images/openapi-01.png)
 
 ## Training Available
 
