@@ -160,7 +160,7 @@ class EMHAcceleratorApp extends PolymerElement {
           <app-header slot="header" reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-            <a class="emhLink" href="http://easymetahub.com"><img src="/images/icon-72x72.png" height="50%"/></a>
+            <img src="/images/icon.svg" height="50%"/>
             <div main-title>Glossary</div>
             <paper-slider title="Page size" pin snaps min="10" max="100" step="10" value="{{params.pagelength}}"></paper-slider>
             <paper-button on-click="_openLoginDialog">[[user.user]]</paper-icon-button>

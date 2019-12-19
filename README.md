@@ -6,6 +6,35 @@ implementation of RestXQ.
 
 *There will be an enhancement for adding the MarkLogic default REST Services later.*
 
+## Basic installation and getting started is here:
+
+In the root directory of the application run:
+
+```gradle mlDeploy```
+
+The application is deployed to port *8006* as the application *emh-glossary-xqrs*
+
+Go to the administrative screen for the server and change the authentication 
+to *application-level* and the default user to *emh-glossary-reader*
+
+![images/emh-glossary-01.png](images/emh-glossary-01.png)
+
+![images/emh-glossary-02.png](images/emh-glossary-02.png)
+
+![images/emh-glossary-03.png](images/emh-glossary-03.png)
+
+![images/emh-glossary-04.png](images/emh-glossary-04.png)
+
+![images/emh-glossary-05.png](images/emh-glossary-05.png)
+
+![images/emh-glossary-06.png](images/emh-glossary-06.png)
+
+![images/emh-glossary-07.png](images/emh-glossary-07.png)
+
+![images/emh-glossary-08.png](images/emh-glossary-08.png)
+
+![images/emh-glossary-09.png](images/emh-glossary-09.png)
+
 ## Customizing
 
 The following three files are the ones to customize to change the application from a 
