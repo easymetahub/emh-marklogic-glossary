@@ -207,9 +207,16 @@ as object-node()*
 
 ## xqDoc
 
+Open 
+[http://localhost:8006/xqDoc](http://localhost:8006/xqDoc) and you get the following.
+
 ![images/xqdoc-01.png](images/xqdoc-01.png)
 
 ## OpenAPI
+
+Open 
+[http://localhost:8006/openapi](http://localhost:8006/openapi) and you get the Swagger UI of the RESTful services
+of the application.
 
 ![images/openapi-01.png](images/openapi-01.png)
 
