@@ -17,21 +17,41 @@ The application is deployed to port *8006* as the application *emh-glossary-xqrs
 Go to the administrative screen for the server and change the authentication 
 to *application-level* and the default user to *emh-glossary-reader*
 
+Open 
+[http://localhost:8006](http://localhost:8006) and you get the following.
+
 ![images/emh-glossary-01.png](images/emh-glossary-01.png)
+
+Searching requires a user with the role *emh-glossary-reader*.  To load a glossary, login as *emh-glossary-writer* with the 
+password *emh-glossary-writer*
 
 ![images/emh-glossary-02.png](images/emh-glossary-02.png)
 
+Click on the upload icong in the Facets header.
+
 ![images/emh-glossary-03.png](images/emh-glossary-03.png)
+
+Click on the *Upload Files...* button.
 
 ![images/emh-glossary-04.png](images/emh-glossary-04.png)
 
+Select the *IVOAT.rdf*  in the *sample-data* folder.
+
 ![images/emh-glossary-05.png](images/emh-glossary-05.png)
+
+Close the dialog and the page refreshes with the current data.
 
 ![images/emh-glossary-06.png](images/emh-glossary-06.png)
 
+Type *galaxy* in the search bar and you get the following.
+
 ![images/emh-glossary-07.png](images/emh-glossary-07.png)
 
+You can then select a facet to narrow the search results.  You can also expand a result item by selecting *Show Details*
+
 ![images/emh-glossary-08.png](images/emh-glossary-08.png)
+
+If you select one of the buttons for *Related*, *Broader*, or *Narrower*, then you will be hyperlinked to that *Concept*
 
 ![images/emh-glossary-09.png](images/emh-glossary-09.png)
 
