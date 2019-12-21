@@ -74,7 +74,23 @@ as object-node()
         			let $content-type as xs:string? := map:get($entry-map, "content-type")
         			let $body := map:get($entry-map, "body")
                     return
-                        custom:process-upload($filename, $body)
+                        object-node { 
+                            "responseFilename" : $filename, 
+                             "messages" : array-node {(
+                                object-node {
+                                    "type" : "info", 
+                                    "message" : "Processing file " || $filename 
+                                },
+                                try {
+                                    custom:process-upload($filename, $body ) 
+                                } catch * {
+                                    object-node { 
+                                        "type" : "error", 
+                                        "message" : $err:description 
+                                    } 
+                                }
+                            )} 
+                        }
             }
     }
 };
