@@ -278,6 +278,14 @@ as object-node()*
         }
 };
 
+declare function custom:glossaries() {
+    array-node { 
+        for $glossary in fn:distinct-values(collection($custom:data-collection)//env:glossaryName/text())
+        order by $glossary
+        return $glossary
+    }
+};
+
 (:~
  : Returns the search option for the query.
  :

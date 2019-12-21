@@ -6,6 +6,7 @@
   "port": %%mlXqrsPort%%,
   "modules-database": "%%MODULES_DATABASE%%",
   "content-database": "%%DATABASE%%",
-  "authentication": "digest",
+  "authentication": "application-level",
+  "default-user": "emh-glossary-reader",
   "url-rewriter": "/xqrs/xqrs.xqy"
 }

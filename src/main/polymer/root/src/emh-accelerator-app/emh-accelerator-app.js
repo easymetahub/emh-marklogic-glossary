@@ -26,8 +26,6 @@ import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import '@polymer/iron-ajax/iron-ajax.js';
-import '@vaadin/vaadin-upload/vaadin-upload.js';
-import './upload-item.js';
 import './result-item.js';
 import './facet-card.js';
 import 'paper-pagination/paper-pagination.js';
@@ -102,24 +100,6 @@ class EMHAcceleratorApp extends PolymerElement {
         url="/session/logout"  
         handle-as="json"
         on-response="_onLogoutResponse"></iron-ajax>
-      <paper-dialog class="wide" id="dialog">
-        <h2>Upload RDF(s)</h2>
-        <paper-dialog-scrollable>
-          <vaadin-upload accept=".rdf" target="/upload-all" method="POST" timeout="300000" form-data-name="my-attachment" id="responseDemo" files="{{files}}">
-            <iron-icon slot="drop-label-icon" icon="description"></iron-icon>
-            <span slot="drop-label">Drop your requests here (RDF files only)</span>
-            <div slot="file-list">
-              <h4 id="files">Files</h4>
-              <template is="dom-repeat" items="[[files]]" as="file">
-                <upload-item item="[[file]]"></upload-item>
-              </template>
-            </div>
-          </vaadin-upload>
-        </paper-dialog-scrollable>
-        <div class="buttons">
-          <paper-button on-click="_closeUpload">Close</paper-button>
-        </div>
-      </paper-dialog>
       <paper-dialog class="wide" id="login">
         <h2>Login</h2>
         <paper-input label="username" value="{{loginData.user}}"></paper-input>
@@ -130,7 +110,7 @@ class EMHAcceleratorApp extends PolymerElement {
         </div>
       </paper-dialog>
       <paper-dialog id="userdata">
-        <h2>Roles</h2>
+        <h2>Roles for [[user.user]]</h2>
         <vaadin-grid  theme="compact wrap-cell-content column-borders row-stripes" items="[[user.role]]"  height-by-rows>
           <vaadin-grid-column>
             <template class="header">ID</template>
@@ -145,7 +125,6 @@ class EMHAcceleratorApp extends PolymerElement {
         <app-drawer slot="drawer">
           <app-toolbar>
             <div main-title>Facets</div>
-            <paper-icon-button icon="file-upload" on-click="_openDialog"></paper-icon-button>
           </app-toolbar>
         <section>
           <template is="dom-repeat" items="{{result.facets}}" as="facet">
@@ -163,7 +142,15 @@ class EMHAcceleratorApp extends PolymerElement {
             <img src="/images/icon.svg" height="50%"/>
             <div main-title>Glossary</div>
             <paper-slider title="Page size" pin snaps min="10" max="100" step="10" value="{{params.pagelength}}"></paper-slider>
-            <paper-button on-click="_openLoginDialog">[[user.user]]</paper-icon-button>
+            <paper-icon-button icon="description" on-click="_goXQDoc"></paper-icon-button>
+            <paper-icon-button icon="fingerprint" on-click="_goOpenAPI"></paper-icon-button>
+            <template is="dom-if" if="[[_isAdmin(user)]]">
+              <paper-icon-button icon="settings" on-click="_goAdmin"></paper-icon-button>
+            </template>
+            <paper-icon-button on-click="_openUserDialog" icon="face"></paper-icon-button>
+            <template is="dom-if" if="[[!_isLoggedIn(user.user)]]">
+              <paper-icon-button on-click="_openLoginDialog" icon="lock"></paper-icon-button>
+            </template>
             <template is="dom-if" if="[[_isLoggedIn(user.user)]]">
               <paper-icon-button on-click="_attemptUserLogout" icon="close" raised></paper-icon-button>
             </template>
@@ -305,6 +292,18 @@ class EMHAcceleratorApp extends PolymerElement {
       this.$.dialog.open();
     }
 
+    _goAdmin() {
+      window.location = "admin/index.html";
+    }
+
+    _goXQDoc() {
+      window.open('xqDoc/', '_blank');
+    }
+
+    _goOpenAPI() {
+      window.open('openapi/', '_blank');
+    }
+
     _runSearch() {
         this.$.thespinner.open();
         this.$.runSearch.generateRequest();
@@ -322,12 +321,12 @@ class EMHAcceleratorApp extends PolymerElement {
     }
 
 
+    _openUserDialog() {
+      this.$.userdata.open();
+    }
+
     _openLoginDialog() {
-      if (this.user.user == 'emh-glossary-reader') {
-        this.$.login.open();
-      } else {
-        this.$.userdata.open();
-      }
+      this.$.login.open();
     }
 
     _attemptUserLogin() {
@@ -353,6 +352,15 @@ class EMHAcceleratorApp extends PolymerElement {
       return (a != 'emh-glossary-reader');
     }
 
+    /**
+     *
+     * @param a
+     * @returns {boolean}
+     * @private
+     */
+  _isAdmin(a) {
+    return (a.role.indexOf("emh-glossary-writer") > -1);
+  }
 
     _formatNumber(x) {
       if (x == null) {

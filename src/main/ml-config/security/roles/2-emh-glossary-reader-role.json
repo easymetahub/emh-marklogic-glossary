@@ -6,5 +6,9 @@
     "privilege-name" : "xdmp:invoke",
     "action" : "http://marklogic.com/xdmp/privileges/xdmp-invoke",
     "kind" : "execute"
+  }, {
+    "privilege-name" : "xdmp:user-roles",
+    "action" : "http://marklogic.com/xdmp/privileges/xdmp-user-roles",
+    "kind" : "execute"
   } ]
 }

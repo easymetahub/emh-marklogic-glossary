@@ -50,27 +50,31 @@ declare
   %output:method("json")
   %xdmp:update
 function emh-upload:upload($files as map:map) 
-as array-node()
+as object-node()
 {
-    array-node {
-        if (fn:count(map:keys($files)) eq 0)
-        then 
-            object-node {
-                "filename" : "none", 
-                "messages" : 
-                    array-node { 
-                        object-node { 
-                            "type" : "error", 
-                            "message" : "There are no files to process!" 
-                        } 
-                    } 
+    object-node {
+        "glossaries" : custom:glossaries(),
+        "results" : 
+            array-node {
+                if (fn:count(map:keys($files)) eq 0)
+                then 
+                    object-node {
+                        "filename" : "none", 
+                        "messages" : 
+                            array-node { 
+                                object-node { 
+                                    "type" : "error", 
+                                    "message" : "There are no files to process!" 
+                                } 
+                            } 
+                    }
+                else
+        			for $filename in map:keys($files) (: iterate through files :)
+        			let $entry-map as map:map := map:get($files, $filename) (: a map per file :)
+        			let $content-type as xs:string? := map:get($entry-map, "content-type")
+        			let $body := map:get($entry-map, "body")
+                    return
+                        custom:process-upload($filename, $body)
             }
-        else
-			for $filename in map:keys($files) (: iterate through files :)
-			let $entry-map as map:map := map:get($files, $filename) (: a map per file :)
-			let $content-type as xs:string? := map:get($entry-map, "content-type")
-			let $body := map:get($entry-map, "body")
-            return
-                custom:process-upload($filename, $body)
     }
 };

@@ -129,3 +129,27 @@ function emh-search:perform-search(
 	            "results" : array-node { $results }
 	        }
 };
+
+(:~
+List the glossaries
+ :)
+declare
+  %rest:path("/glossaries")
+  %rest:produces("application/json")
+function emh-search:list-glossaries() {
+	custom:glossaries()
+};
+
+(:~
+List the glossaries
+ :)
+declare
+  %rest:path("/delete")
+  %rest:query-param-1('glossary', '{$glossary}', '*')
+  %rest:produces("application/json")
+  %xdmp:update
+function emh-search:delete-glossary($glossary as xs:string) {
+	let $deleted := xdmp:collection-delete("glossary-" || $glossary)
+	return
+	object-node { "success" : fn:true() }
+};

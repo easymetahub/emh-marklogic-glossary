@@ -110,6 +110,35 @@ task copyPolymerRoot(type: Copy) {
  * Polymer 
  */
 
+task npmInstallAdmin(type: Exec) {
+    String npm = 'npm';
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        npm = 'npm.cmd'
+    }
+    workingDir 'src/main/polymer/admin'
+    commandLine npm, 'install'
+}
+
+task polymerBuildAdmin(type: Exec) {
+    String polymer = 'polymer';
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        polymer = 'polymer.cmd'
+    }
+    workingDir 'src/main/polymer/admin'
+    commandLine polymer, 'build'
+}
+
+
+task copyPolymerAdmin(type: Copy) {
+  into 'src/main/ml-modules/root/admin'
+  from 'src/main/polymer/admin/build/default'
+}
+
+
+/**
+ * Polymer 
+ */
+
 task npmInstallXQDoc(type: Exec) {
     String npm = 'npm';
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
@@ -139,6 +168,11 @@ loadXQDocs.mustRunAfter(dbTeardownXQDocs)
 mlDeploy.dependsOn copyPolymerRoot
 copyPolymerRoot.dependsOn polymerBuildRoot
 polymerBuildRoot.dependsOn npmInstallRoot
+
+mlDeploy.dependsOn copyPolymerAdmin
+copyPolymerAdmin.dependsOn polymerBuildAdmin
+polymerBuildAdmin.dependsOn npmInstallAdmin
+
 mlDeploy.dependsOn copyPolymerXQDoc
 copyPolymerXQDoc.dependsOn polymerBuildXQDoc
 polymerBuildXQDoc.dependsOn npmInstallXQDoc
