@@ -1,10 +1,37 @@
 # EasyMetaHub Glossary Manager for MarkLogic
 
-This application is a glossary viewer with an xqDoc viewer and the 
-RESTful OpenAPI viewer for the REST services defined using the XQRS 
-implementation of RestXQ.
+## Introduction
 
-*There will be an enhancement for adding the MarkLogic default REST Services later.*
+This application is a SKOS glossary manager and faceted search application that can 
+manage multiple glossaries.  It is intended for organizations that need to manage
+one or more glossaries.
+
+It was created as an easily customizable search application.  It abstracts out the
+common code for faceted search and gives an easy development interface to customize
+for uses other than a glossary manager.
+
+#### About the author
+
+[Loren Cahlander](https://www.linkedin.com/in/lorencahlander/) is the creator of
+this tool and the [sister glossary application](https://github.com/easymetahub/emh-exist-glossary)
+for [eXist-db](http://exist-db.org).  
+
+He has also taken over the maintenance
+of [xqDoc](http://xqdoc.org) that provides a simple vendor neutral solution 
+for documenting XQuery library and main modules, as well as tools to generate 
+a user friendly presentation of this documentation and cross reference information.
+
+#### Extras
+
+This application also has an 
+
+* xqDoc viewer to view the documentation of the codebase for this application
+* RESTful OpenAPI viewer for the REST services defined using the XQRS 
+implementation of [RestXQ](http://exquery.github.io/exquery/exquery-restxq-specification/restxq-1.0-specification.html).
+
+#### Consulting 
+[EasyMetaHub](http://easymetahub.com) is available for consulting in developing your
+own customization of this tool.
 
 ## Basic installation and getting started is here:
 
