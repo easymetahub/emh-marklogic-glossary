@@ -201,6 +201,9 @@ class EMHAcceleratorApp extends PolymerElement {
 
     clearInput() {
       this.search = "";
+      this.params.q = "";
+      this.params.facets = "";
+      this.searchChanged();
     }
 
     searchChanged() {
