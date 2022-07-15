@@ -16,7 +16,7 @@
     "@vaadin/vaadin-progress-bar": "^1.1.0",
     "@vaadin/vaadin-upload": "^4.2.1",
     "@vaadin/vaadin-tabs": "^2.1.2",
-    "@vaadin/vaadin-text-field": "^2.4.4"
+    "@vaadin/vaadin-text-field": "^2.9.2"
   },
   "devDependencies": {
     "@polymer/test-fixture": "^4.0.2",
