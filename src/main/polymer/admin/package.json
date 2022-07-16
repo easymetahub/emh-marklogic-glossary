@@ -14,7 +14,7 @@
     "@polymer/polymer": "^3.0.0",
     "@vaadin/vaadin-grid": "^5.9.6",
     "@vaadin/vaadin-progress-bar": "^1.1.0",
-    "@vaadin/vaadin-upload": "^4.2.1",
+    "@vaadin/vaadin-upload": "^4.4.3",
     "@vaadin/vaadin-tabs": "^2.1.2",
     "@vaadin/vaadin-text-field": "^2.9.2"
   },
