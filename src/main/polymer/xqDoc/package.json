@@ -16,7 +16,7 @@
     "@polymer/paper-toast": "^3.0.1",
     "@polymer/paper-toggle-button": "^3.0.1",
     "@polymer/paper-toolbar": "^3.0.1",
-    "@polymer/polymer": "^3.0.0",
+    "@polymer/polymer": "^3.5.1",
     "@vaadin/vaadin-grid": "^5.2.5",
     "polymer-code-highlighter": "^1.0.5"
   },
