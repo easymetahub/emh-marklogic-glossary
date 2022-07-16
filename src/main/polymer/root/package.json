@@ -21,7 +21,7 @@
     "@polymer/polymer": "^3.0.0",
     "@vaadin/vaadin-grid": "^5.2.1",
     "@vaadin/vaadin-progress-bar": "^1.1.0",
-    "@vaadin/vaadin-upload": "^4.2.1",
+    "@vaadin/vaadin-upload": "^4.4.3",
     "paper-pagination": "^1.0.0"
   },
   "devDependencies": {
