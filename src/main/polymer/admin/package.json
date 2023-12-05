@@ -10,7 +10,7 @@
     "@polymer/paper-card": "^3.0.1",
     "@polymer/paper-dialog": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.2",
-    "@polymer/paper-input": "^3.0.2",
+    "@polymer/paper-input": "^3.2.1",
     "@polymer/polymer": "^3.5.1",
     "@polymer/polymer": "^3.0.0",
     "@vaadin/vaadin-grid": "^5.9.6",
